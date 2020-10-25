@@ -1,8 +1,9 @@
 #include <iostream>
-#define MAX 10
+#define MAX 5
 using namespace std;
 
 // global functions
+int option;
 int queue[MAX];
 int front = -1;
 int rear = -1;
@@ -18,7 +19,6 @@ void printqueue();
 // driver function
 int main()
 {
-    int option;
     int element;
 
     cout << endl
@@ -63,9 +63,6 @@ int main()
         case 4:
             printqueue();
 
-        case 5:
-            cout << sizeof(queue) << endl;
-
         default:
             break;
         }
@@ -79,7 +76,7 @@ int main()
 void enqueue(int el)
 {
     if (isfull())
-        cout << "ERROR: The queue is full. Please remove elements to add new element" << endl;
+        cout << "ERROR: Queue Overflow" << endl;
     else
     {
         rear++;
@@ -89,8 +86,15 @@ void enqueue(int el)
 }
 void dequeue()
 {
-    if (isempty())
+    if ((front == (MAX - 1)) && (rear == (MAX - 1)))
+    {
+        cout << "MESSAGE: The queue is dead due to array overflow" << endl
+             << "Exiting..." << endl;
+        option = 6;
+    }
+    else if (isempty())
         cout << "ERROR: The queue is empty. Please add elements to continue." << endl;
+
     else
     {
         front++;
@@ -119,14 +123,18 @@ int peek()
 void printqueue()
 {
     if (isempty())
+    {
+        cout << endl
+             << "Front: " << front << ", Rear: " << rear << ", MAX-1:" << MAX - 1 << endl;
         cout << "ERROR : The queue is empty. Cannot print it" << endl;
+    }
     else
     {
-        for (int i = front; i <= rear; i++)
+        for (int i = front; i < rear; i++)
         {
             cout << queue[i + 1] << " <-- ";
         }
         cout << endl
-             << "Front: " << front << ", Rear: " << rear << endl;
+             << "Front: " << front << ", Rear: " << rear << ", MAX-1:" << MAX - 1 << endl;
     }
 }
