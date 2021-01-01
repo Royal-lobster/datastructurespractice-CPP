@@ -1,18 +1,57 @@
 #include <iostream>
 using namespace std;
 
-//global variables
-int stack[100], n = 100, top = -1;
+// creating class Stack with all the methords
+class Stack
+{
+private:
+    //data members (state)
+    int stack[100], n = 100, top = -1;
 
-//function declaration
-void push(int element);
-void pop();
-void display();
+public:
+    //constructor
+    Stack(){};
+    //push methord
+    void push(int element)
+    {
+        if (top >= n - 1)
+            cout << "Stack Overflow" << endl;
+        else
+        {
+            top++;
+            stack[top] = element;
+        }
+    }
+    //pop methord
+    void pop()
+    {
+        if (top <= -1)
+            cout << "Stack Underflow" << endl;
+        else
+        {
+            cout << "The popped element is " << stack[top] << endl;
+            top--;
+        }
+    }
+    void display()
+    {
+        if (top >= 0)
+        {
+            cout << "Stack elements are:";
+            for (int i = top; i >= 0; i--)
+                cout << stack[i] << " ";
+            cout << endl;
+        }
+        else
+            cout << "Stack is empty";
+    }
+};
 
-//main function
+//driver code=====================================================
 int main()
 {
     int option, element;
+    Stack mystack;
     cout << "Options :" << endl
          << "1) Push in stack" << endl
          << "2) Pop from stack"
@@ -31,17 +70,17 @@ int main()
         {
             cout << "Enter value to be pushed: ";
             cin >> element;
-            push(element);
+            mystack.push(element);
             break;
         }
         case 2:
         {
-            pop();
+            mystack.pop();
             break;
         }
         case 3:
         {
-            display();
+            mystack.display();
             break;
         }
         case 4:
@@ -58,37 +97,4 @@ int main()
     } while (option != 4);
     return 0;
 }
-
-// functions
-void push(int element)
-{
-    if (top >= n - 1)
-        cout << "Stack Overflow" << endl;
-    else
-    {
-        top++;
-        stack[top] = element;
-    }
-}
-void pop()
-{
-    if (top <= -1)
-        cout << "Stack Underflow" << endl;
-    else
-    {
-        cout << "The popped element is " << stack[top] << endl;
-        top--;
-    }
-}
-void display()
-{
-    if (top >= 0)
-    {
-        cout << "Stack elements are:";
-        for (int i = top; i >= 0; i--)
-            cout << stack[i] << " ";
-        cout << endl;
-    }
-    else
-        cout << "Stack is empty";
-}
+//End driver code================================================
