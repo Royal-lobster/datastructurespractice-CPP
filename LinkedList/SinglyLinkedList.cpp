@@ -198,6 +198,43 @@ public:
                  << "Node [" << ptr->key << "," << ptr->data << "]" << endl;
         }
     }
+    // 8. return length of list
+    int length()
+    {
+        Node *ptr = head;
+        int len = 0;
+        while (ptr != NULL)
+        {
+            ptr = ptr->next;
+            len++;
+        }
+        return len;
+    }
+    // 9.  reversing the list
+    void reverseList()
+    {
+        Node *left = head;
+        Node *right = head;
+        int i = 0;
+        int j = length() - 1;
+        while (i < j)
+        {
+            int k = 0;
+            while (k < j)
+            {
+                right = right->next;
+                k++;
+            }
+            int temp = left->data;
+            left->data = right->data;
+            right->data = temp;
+            i++;
+            j--;
+            left = left->next;
+            right = head;
+        }
+        cout << "List successfully reversed" << endl;
+    }
 };
 
 int main()
@@ -215,9 +252,11 @@ int main()
         cout << "3) insert a node after another node" << endl;
         cout << "4) delete a node from list" << endl;
         cout << "5) Update a node from list" << endl;
-        cout << "6) Print the list" << endl;
-        cout << "7) exit" << endl;
-        cout << "Please enter an option [1/2/3/4/5] : ";
+        cout << "6) Reverse the list" << endl;
+        cout << "7) Print length of the list" << endl;
+        cout << "8) Print the list" << endl;
+        cout << "9) exit" << endl;
+        cout << "Please enter an option [1/2/3/4/5/6/7/8/9] : ";
         cin >> option;
         if (option == 1)
         {
@@ -250,7 +289,8 @@ int main()
             cin >> k;
             list.deleteNodeByKey(k);
         }
-        else if (option == 5){
+        else if (option == 5)
+        {
             int k, d;
             cout << "Please enter key of node you want to update: ";
             cin >> k;
@@ -260,9 +300,17 @@ int main()
         }
         else if (option == 6)
         {
-            list.printList();
+            list.reverseList();
         }
         else if (option == 7)
+        {
+            cout << "length of the list is : " << list.length() << endl;
+        }
+        else if (option == 8)
+        {
+            list.printList();
+        }
+        else if (option == 9)
         {
             cout << "Exiting..." << endl
                  << endl;
