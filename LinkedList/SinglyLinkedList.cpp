@@ -217,23 +217,34 @@ public:
         Node *right = head;
         int i = 0;
         int j = length() - 1;
-        while (i < j)
+        if (j + 1 > 1)
         {
-            int k = 0;
-            while (k < j)
+            while (i < j)
             {
-                right = right->next;
-                k++;
+                int k = 0;
+                while (k < j)
+                {
+                    right = right->next;
+                    k++;
+                }
+                int temp = left->data;
+                left->data = right->data;
+                right->data = temp;
+                i++;
+                j--;
+                left = left->next;
+                right = head;
             }
-            int temp = left->data;
-            left->data = right->data;
-            right->data = temp;
-            i++;
-            j--;
-            left = left->next;
-            right = head;
+            cout << "List successfully reversed" << endl;
         }
-        cout << "List successfully reversed" << endl;
+        else if (j + 1 == 1)
+        {
+            cout << "List has only one node." << endl;
+        }
+        else
+        {
+            cout << "List is empty" << endl;
+        }
     }
 };
 
