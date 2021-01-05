@@ -21,21 +21,19 @@ int main()
 // Functions
 void selectionSort(int arr[], int size)
 {
-    int minIndex;
-    int temp;
-
     for (int i = 0; i < size - 1; i++)
     {
-        minIndex = i;
+        int element = arr[i];
+        int currentMin = element;
         for (int j = i + 1; j < size; j++)
         {
-            if (arr[minIndex] > arr[j])
+            if (arr[j] < arr[currentMin])
             {
-                temp = arr[minIndex];
-                arr[minIndex] = arr[j];
-                arr[j] = temp;
+                currentMin = j;
             }
         }
+        arr[i] = arr[currentMin];
+        arr[currentMin] = element;
     }
 }
 void printArr(int arr[], int size)
