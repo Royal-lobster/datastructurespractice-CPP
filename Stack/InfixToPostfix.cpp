@@ -16,7 +16,7 @@ int postfix_ans(string);
 int main()
 {
     string infix;
-    cout << "Please enter an expression to solve: ";
+    cout << "Please enter an expression to solve (only involving single digits): ";
     cin >> infix;
     cout << "The infix expression of the input is : " << infix << endl;
     string postfix_exp = postfix(infix);
